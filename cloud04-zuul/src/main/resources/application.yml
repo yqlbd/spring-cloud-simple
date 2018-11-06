@@ -15,3 +15,21 @@ zuul:
     api-feign:
       path: /api-feign/**
       serviceId: service-feign
+    config-client:
+      path: /config-client/**
+      serviceId: config-client
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
