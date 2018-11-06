@@ -1,5 +1,3 @@
-server:
-  port: 8795
 spring:
   application:
     name: config-client
