@@ -1,15 +1,29 @@
-server:
-  port: 8761
+spring:
+  application:
+    name: eurka-server
+  profiles:
+    active: server1
+my:
+  port1: 8761
+  port2: 8760
 
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: true
   client:
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${my.port1}/eureka/,http://${eureka.instance.hostname}:${my.port2}/eureka/
+---
+#server1 配置
+server:
+  port: ${my.port1}
 
 spring:
-  application:
-    name: eurka-server
+  profiles: server1
+---
+#server2 配置
+server:
+  port: ${my.port2}
+spring:
+  profiles: server2
